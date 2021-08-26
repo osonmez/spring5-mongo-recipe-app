@@ -4,6 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.UUID;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 /**
  * Created by jt on 6/13/17.
@@ -12,12 +16,14 @@ import java.math.BigDecimal;
 @Setter
 public class Ingredient {
 
-    private String id;
+    private String id = UUID.randomUUID().toString();
     private String description;
     private BigDecimal amount;
 
+    @DBRef
     private UnitOfMeasure uom;
-    private Recipe recipe;
+    
+    //private Recipe recipe;
 
     public Ingredient() {
     }
@@ -32,7 +38,7 @@ public class Ingredient {
         this.description = description;
         this.amount = amount;
         this.uom = uom;
-        this.recipe = recipe;
+        //this.recipe = recipe;
     }
 
 }
